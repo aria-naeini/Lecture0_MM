@@ -1,0 +1,76 @@
+%!TEX root = P231_notes.tex
+
+\section{Introduction: Why mathematical methods?}
+\lecdate{lec~01}
+
+Physics 231:~Methods of Theoretical Physics is a course for first-year physics and astronomy graduate students. It is a `crash course’ in mathematical methods necessary for graduate courses in electrodynamics, quantum mechanics, and statistical mechanics. It is a \emph{boot camp} rather than a rigorous theorem--proof mathematics class. Where possible, the emphasis is on physical intuition rather than mathematical precision. 
+
+\subsection{Green’s functions}
+
+Our primary goal is to solve linear differential equations:
+\begin{align}
+  \mathcal O f(x) = s(x) \ .
+  \label{eq:greens:function:equation}
+\end{align}
+In this equation, $\mathcal O$ is a \emph{differential operator} that encodes some kind of physical dynamics\footnote{A \textbf{differential operator} is just something built out of derivatives that can act on a function. The differential operator may contain coefficients that depend on the variable that we are differentiating with respect to; for example, $\mathcal O = (d/dx)^2 + 3x\,(d/dx)$. Pop quiz: is this operator \emph{linear}? The first term is squared...}, $s(x)$ is the \emph{source} of those dynamics, and $f(x)$ is the system's physical \emph{response} that we would like to determine. The solution to this equation is:
+\begin{align}
+  f(x) &= \mathcal O^{-1} s(x) \ .
+\end{align}
+Simply writing that is deeply unsatisfying! %It is as if we were asked to solve $f'(x) = 3x$ and simply wrote $f(x) = \int 3x\, dx$. The real 
+In this course, we think carefully about what $\mathcal O^{-1}$ actually \emph{means} and how we can calculate it. As you may have guessed, $\mathcal O^{-1}$ is the \textbf{Green's function} for the differential operator $\mathcal O$. 
+
+We approach problem by analogy to linear algebra, where a linear transformation\footnote{Recall that as physicists, `linear transformation' is a fancy way of saying `matrix.'} $A$ acts on a vector to give equations like
+\begin{align}
+  A \vec{v} = \vec{w} \ ,
+\end{align}
+whose solution is
+\begin{align}
+  \vec{v} = A^{-1} \vec{w} \ .
+\end{align}
+We connect the notion of a linear differential operator to a matrix in an infinite dimensional space to give a working definition of $\mathcal O^{-1}$. We then pull out a bag of tricks from complex analysis to actually solve $\mathcal O^{-1}s(x)$ given $\mathcal O$ and $s(x)$. 
+
+\subsection{This is not what I expected from a math methods course}
+
+This is a course in mathematical methods for \emph{physicists}.\footnote{By `physicists' I also include astronomers. To quote Prof.~Becker during a faculty meeting, ``Everything we do in the astronomy group is astro\emph{physics}.'' While I do not quite understand the distinction between astronomy and astrophysics, let it be clear that the methods of theoretical physics we discuss here are equivalently methods of astronomy... er, astrophysics. This is of course all pedantry. What is really exciting is that these are the same methods of emerging fields, like machine learning and quantum information science. Your job as a young scientist is not to let yourself be limited by an artificial label.} We will not solve \emph{every} class of differential equation that is likely to pop up in your research careers\footnote{That would be a course on mathematical methods for \emph{engineers}.}---that's neither feasible nor particularly enjoyable. 
+%
+This is also not a course in formal proofs---there are plenty of excellent textbooks for you to learn those formal proofs to your heart's content\footnote{... and as a graduate student, you should feel well equipped and encouraged to learn all of the necessary material \emph{you} need for \emph{your} research and interests---whether or not they show up in your coursework.}. 
+%
+The goal of this course is to weave together ideas that are not often connected explicitly in undergraduate physics courses in the United States: linear algebra, differential equations, complex analysis. These ideas are not necessarily new---in fact, I \emph{expect} you have seen many them often---but rather we will take a big view of how the interconnection of these ideas come up over and over again in our description of nature.
+
+Do not be surprised if we only mention Bessel functions in passing. Do not think less of our efforts if we do not determine Wronksians or go beyond a single Riemann sheet. As graduate students, it is \emph{your} responsibility to be able to grab your favorite textbook to apply mathematics as needed to your research. \emph{This course} is about the larger narrative that is not often shared explicitly in those books. It is the `knack for math' that physicists are, as a culture, rather proud of. It is what tends to make us employable in Silicon Valley while simultaneously terrible at splitting the bill at a restaurant. 
+ 
+
+
+
+\subsection{The totally not-mathematical idea  of mathematical niceness}
+\label{sec:niceness}
+
+I find it useful to appeal to the notion of a \textbf{nice} mathematical situation. This is not a formal idea, and it is one many things mathematicians find ridiculous about me. But as a physicist, the concept of mathematical \emph{niceness} is helpful. 
+
+The physical systems that we spend the most time thinking about are all \emph{nice}. 
+%
+While our mathematical cousins may spend years proving every exceptional case to a theorem, we tend to be happy to push onward as long as mathematical results are true for the \emph{nice} cases. 
+%
+Nice mathematical models make tidy predictions. Then we can Taylor expand about these nice predictions to make better predictions.
+%
+When doing this, we sometimes say \emph{perturbation theory} multiple times in case someone watching us does not think are being rigorous enough.
+% We make Taylor expansions without anguishing about the radius of convergence\footnote{\url{https://johncarlosbaez.wordpress.com/2016/09/21/struggles-with-the-continuum-part-6/}} and validate it post-facto because it \emph{works}.
+% 
+% We rarely worry about the existence of orthonormal bases---the spaces in physics are all \emph{nice}. We rarely have to worry about these degenerate cases, and so most of our energy goes toward understanding the mathematical properties of the \emph{nice} cases that describe nature.
+%
+
+This is not to say that nature cares at all about our physical models. 
+%
+Every once in a while, we \emph{do} have to worry about the exceptional cases because our models fail to accommodate what is \emph{actually} happening in nature. Those scenarios are the most interesting of all. That’s when our mathematical formalism grabs us by the collar and says, \emph{listen to me---something important is happening and it probably has to do with nature!} This often happens when a calculation tells us that a physical result is infinite. 
+
+\begin{exercise}\label{ex:hydrogen:problem}
+Consider the potential that an electron feels in the hydrogen atom:
+\begin{align}
+	V(r) &= -\frac{\alpha}{r} \ .
+\end{align}
+As the electron--proton separation goes to zero, $r\to 0$, the potential goes to infinity. Classical electrodynamics is telling us that something curious is happening. What actually happens? (And why didn't you ask this question when you were in high school?)
+\end{exercise}
+
+In this course we focus on \emph{nice} functions and \emph{nice} operators and \emph{nice} boundary conditions, etc. For the most part, this is what we need to make progress on our physical models and it’s worth spending our time learning to work with \emph{nice} limits. Leave the degenerate cases to the mathematicians for now. Eventually, though, you may find yourself in a situation where physics demands \emph{not nice} mathematics. In that case---and only when the physics demands it---you will be ready to poke and prod at the mathematical curiosity until the underlying \emph{physics} reason for the not-niceness is apparent.
+
+% All this is to say: if you object to this course because we do not start with proofs about open sets or convergence, then you’re missing the point.
